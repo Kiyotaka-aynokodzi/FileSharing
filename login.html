@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Файлообменник</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="qwe.js"></script>
+    
+
+</head>
+
+<body>
+    <span class="banan" onclick="openNav()">Файлообменник</span>
+    <main>
+
+
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <form method="POST" action="/">
+                <div class="name">
+                    <label id="zxc">Ваш логин:</label>
+                    <input type="text" name="auth_name" id="login_name" placeholder="Введите ваш логин" required>
+                </div>
+                <div class="password">
+                    <label id="qwe">Ваш пароль:</label>
+                    <input type="text" name="auth_password" id="login_pass" placeholder="Введите ваш пароль" required>
+                </div>
+                <button value="login" type="submit" id="login-sumbit">Войти</button>
+            </form>
+            
+
+
+            <button class="butonchik" id="bubble" type="submit" onclick="vhod()">
+                Вход
+                <span class="bubbles">
+                    <span class="bubble"></span>
+                    <span class="bubble"></span>
+                    <span class="bubble"></span>
+                    <span class="bubble"></span>
+                    <span class="bubble"></span>
+                    <span class="bubble"></span>
+                    <span class="bubble"></span>
+                    <span class="bubble"></span>
+                    <span class="bubble"></span>
+                    <span class="bubble"></span>
+                </span>
+            </button>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                    <filter id="gooey">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                        <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                            result="highContrastGraphic" />
+                        <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
+                    </filter>
+                </defs>
+            </svg>
+            <div class="notAccount">
+                <a href="./zxc.html">Нет учетной записи?</a>
+            </div>
+        </div>
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "400px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }</script>
+
+<script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', (i) => {
+        i.preventDefault();
+
+        const login_name = document.getElementById('login_name').value;
+        const login_pass = document.getElementById('login_pass').value;
+
+        fetch('/site/login/login.html', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ login_name, login_pass}),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    console.log('готово');
+                } else {
+                    console.error('все плохо');
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    });
+</script>
+    </main>
+</body>
+
+</html>
